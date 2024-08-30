@@ -6,37 +6,38 @@ import java.util.List;
 import edu.kh.jdbc.dto.User;
 import edu.kh.jdbc.service.UserService;
 import edu.kh.jdbc.service.UserServiceImpl;
-import jakarta.security.auth.message.callback.PrivateKeyCallback.Request;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.ServletRequest;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/selectAll")
-public class SelectAllServlet extends HttpServlet {
+@WebServlet("/selectUser")
+public class SelectUserServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		try {
-		
-			UserService Service = new UserServiceImpl();
-			List<User> userList = Service.selectAll();
-		
-		
-			req.setAttribute("userList", userList);
-		
-		
-		
-			String path = "/WEB-INF/views/selectAll.jsp";
+			
+//			int userNo = Integer.parseInt("userNo");
+			String userNo = req.getParameter("userNo");
+//			String userNo = req.getParameter("userNo");
+			
+			
+			UserService service = new UserServiceImpl();
+			User selectUser = service.selectUser(userNo);
+			
+			req.setAttribute("selectUser", selectUser);
+			
+			
+			String path = "/WEB-INF/views/selectUser.jsp";
 			req.getRequestDispatcher(path).forward(req, resp);
-		
-		} catch(Exception e) {
+			
+			
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 	

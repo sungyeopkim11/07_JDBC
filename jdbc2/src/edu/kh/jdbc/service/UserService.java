@@ -34,7 +34,7 @@ public class UserService {
 	public User selectId(String input) {
 		
 		// 커넥션 생성
-		Connection conn = JDBCTemplate.getConnection();
+		Connection conn = getConnection();
 		
 		// Dao 메서드 호출 후 결과 반환 받기
 		// (조금 이따 작성)
