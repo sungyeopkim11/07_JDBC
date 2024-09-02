@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.Scanner;
 
+
+
 public class JDBCExample5 extends JDBCExample2 {
 	public static void main(String[] args) {
 		

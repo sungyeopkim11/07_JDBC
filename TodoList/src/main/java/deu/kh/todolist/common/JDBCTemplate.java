@@ -1,4 +1,4 @@
- package edu.kh.jdbc.common;
+package deu.kh.todolist.common;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -73,8 +73,13 @@ public class JDBCTemplate {
 			
 			// 2. Properties 메서드를 이용해서
 			//    driver.xml 파일 내용을 읽어와 prop 에 저장
-			String filePath = "driver.xml"; 
-			// 프로젝트 폴더 바로 아래 driver.xml 파일
+			String filePath = 
+				JDBCTemplate.class.getResource("/edu/kh/todolist/sql/driver.xml").getPath();
+			// -> 빌드(코드를 실행 가능한 상태로 만드는 것) 시
+			//    컴파일된 JDBCTemplate.class 파일의 위치에서
+			//    /edu/kh/jdbc/sql/driver.xml 파일을 찾아
+			//    실제 경로 얻어오기
+			
 			
 			prop.loadFromXML(new FileInputStream(filePath));                               
 			
